@@ -3,6 +3,22 @@ import {useState, useEffect} from 'react'
 import { motion } from "framer-motion"
 import { useTransition } from 'react-transition-state';
 import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import '../../App.css'
+
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from '@chakra-ui/react'
+
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { PhoneIcon, AddIcon, WarningIcon, ChevronDownIcon } from '@chakra-ui/icons'
+
 
 export const FlashCard = () => {
 
@@ -10,6 +26,8 @@ export const FlashCard = () => {
   const [randomKanji, setRandomKanji] = useState('');
   const [index, setIndex] = useState(0);
   const [characterInfo, setCharacterInfo] = useState({});
+
+  const [frontShowing, setFrontShowing] = useState(true);
 
   const [gradeMenu, setGradeMenu] = useState(false);
   const [gradeSelected, setGradeSelected] = useState("grade-1");
@@ -38,8 +56,6 @@ export const FlashCard = () => {
     setRandomKanji(randomKanji);
     setIndex(randomNumber);
   }, [allKanji])  
-
-  const [frontShowing, setFrontShowing] = useState(true);
   
    let getRandomKanji = () => {
     let randomNumber = Math.floor(Math.random() * 80);
@@ -65,30 +81,50 @@ export const FlashCard = () => {
   let handleNext = () => {
 
   }
-  
+
+  let SelectMenu = () => {
+    return (
+      <Menu>
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon /> } colorScheme="black">
+        select grade
+        </MenuButton>
+        <MenuList>
+          <MenuItem onClick={()=>{handleGradeSelect("grade-1")}}>grade 1</MenuItem>
+          <MenuItem onClick={()=>{handleGradeSelect("grade-2")}}>grade 2</MenuItem>
+          <MenuItem onClick={()=>{handleGradeSelect("grade-3")}}>grade 3</MenuItem>
+        </MenuList>
+      </Menu>
+    )
+  }
+
+  let menu = <div><p onClick={toggleGradeMenu} className="cursor-pointer pt-1"><BsFillCaretDownSquareFill className="text-stone-400"/></p></div>
+
   let buttonStyle="bg-stone-900 rounded-sm border-2 border-stone-600 bg-stone-700 w-32";
-  let gradeOptionStyle="cursor-pointer px-2 border-t-2 border-stone-900 hover:bg-stone-700 "
+  let gradeOptionStyle="cursor-pointer px-2 border-t-2 border-stone-900 hover:bg-stone-700"
+
 
   return (
 
     <div className="flex content-center justify-center">
 
-      <div className="rounded-sm border-2 border-stone-700 bg-stone-800 w-4/12 ">
+      <div className="rounded-sm border-2 border-emerald-600 bg-stone-800 w-7/12 shadow-xl shadow-emerald-600 ">
 
         <div className="px-2 flex justify-between ">
+
           <div className="">kyōiku kanji {gradeSelected}</div>
-          <div><p onClick={toggleGradeMenu} className="cursor-pointer pt-1"><BsFillCaretDownSquareFill className="text-stone-400"/></p></div> 
+          <SelectMenu/>
         </div>
 
         {
           gradeMenu &&
-          <div className=" z-50">  
+          <div className="z-50">  
             <div onClick={()=>{handleGradeSelect("grade-1")}} className={gradeOptionStyle}><p>grade 1</p></div>
             <div onClick={()=>{handleGradeSelect("grade-2")}} className={gradeOptionStyle}><p>grade 2</p></div>
             <div onClick={()=>{handleGradeSelect("grade-3")}} className={gradeOptionStyle}><p>grade 3</p></div>
           </div>
         }
-
+      
+        
         <div className="bg-stone-900 px-2 pt-2">
           <p>index: {index}</p>
         </div>
@@ -105,7 +141,7 @@ export const FlashCard = () => {
 
         <div className="py-2 flex bg-stone-900 border-stone-700 justify-center px-2">
           <div className="mr-2"><button className={buttonStyle + ""}>previous</button></div> 
-          <div className=""><button className={buttonStyle} onClick={getRandomKanji}>random</button> </div>
+          <div className="randomKanjiBtn"><button className={buttonStyle} onClick={getRandomKanji}>random</button> </div>
           <div className="ml-2"><button className={buttonStyle + ""}>next</button> </div>
         </div>
 
@@ -115,3 +151,6 @@ export const FlashCard = () => {
     
   )
 }
+
+
+

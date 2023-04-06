@@ -4,8 +4,11 @@ import { Navbar } from './components/navbar/Navbar.jsx';
 import './App.css'
 
 function App() {
+  
+
+
   return (
-    <div className="bg-stone-900 h-screen text-white w-screen">
+    <div className="bg-stone-950 h-screen text-white w-screen">
         <Navbar/>
         <FlashCard/>
     </div>
