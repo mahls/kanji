@@ -168,9 +168,26 @@ export const FlashCard = () => {
     <div className="flex content-center justify-center">
 
       {/*glow*/}
-      <div className="fixed w-7/12 z-0 shadow-2xl opacity-5 shadow-violet-900 h-96 animate-pulse mb-4 rounded-2xl "></div>
+      <div className="fixed w-7/12 z-0 shadow-2xl shadow-violet-700 h-96 animate-pulse rounded-4xl"></div>
 
-      <div className="rounded-sm border-2 h-9/12 z-40 border-stone-800 border-opacity-50 bg-stone-900 w-7/12  ">
+      {
+        /*animation*/
+        divsArray.map(()=>{
+            return(
+              <motion.div 
+                initial={{ opacity: 0.1, scale: 1, scaleX: 2 }}
+                animate={{ opacity: 0, scale: 0 }}
+                transition={{ duration: 1}}
+              key={Math.random()} className="absolute w-36 shadow-2xl h-40 z-50 blur-2xl rounded-full top-48 bg-violet-500 shadow-2xl shadow-violet-900 ">{divsArray[0]}</motion.div>
+            );
+          }
+        ) 
+      }
+      
+
+      
+
+    <div className="rounded-sm border-2 z-40 border-violet-500 bg-stone-900 w-7/12  ">
 
         <div className="px-4 flex justify-between pt-4">
           <div className="font-bold">Kyōiku Kanji {gradeSelected}</div>
@@ -186,21 +203,20 @@ export const FlashCard = () => {
           </div>
         }
         
-        <div className="bg-stone-900 px-4 pt-4">
+        <div className="bg-stone-900 px-4 pt-2">
           <p className="text-stone-300">Index: {index}</p>
         </div>
 
-        <div className="flex justify-center bg-stone-900 px-5 pt-8 h-48 py-5">
-            <motion.div className="text-9xl text-stone-100 z-20 h-46 shadow-violet-200">{ isNext ? nextKanji : randomKanji } </motion.div>
+        <div className="flex justify-center bg-stone-900 px-5 pt-8 h-46 py-5">
+            <motion.div  className="text-9xl text-stone-100 z-20 shadow-violet-200">{ isNext ? nextKanji : randomKanji } </motion.div>
         </div>
   
-        { showInfo ?
-          <div className="flex h-16 align-center center  justify-center bg-stone-900 px-5 py-5 text-stone-200 transition">
-            <div className="px-2">Meaning: { characterInfo.heisig_en}</div>
-            <div className="px-2">Kun: {characterInfo.kun_readings ==  undefined ? '' : characterInfo.kun_readings[0]}</div>
-            <div className="px-2">Yoni: {characterInfo.on_readings == undefined ? '' : characterInfo.on_readings[0]}</div>
-          </div> :
-          <div className="bg-stone-900 h-16 transition"></div>
+        { showInfo &&
+          <div className="flex align-center center  justify-center bg-stone-900 px-5 py-5 text-stone-200">
+            <div>Meaning: { characterInfo.heisig_en}</div>
+            <div>Kun: {characterInfo.kun_readings ==  undefined ? '' : characterInfo.kun_readings[0]}</div>
+            <div>Yoni: {characterInfo.on_readings == undefined ? '' : characterInfo.on_readings[0]}</div>
+          </div>
         }
         <div className="py-2 pb-4 flex bg-stone-900 border-stone-700 px-4 pt-4 justify-between">
           <div className="bg-stone-900 border-stone-700 mr-20 cursor-pointer" onClick={toggleInfo}>{showInfo ? <BsEye/> : <BsEyeSlash/>}</div>
