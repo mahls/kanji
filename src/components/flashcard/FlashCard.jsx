@@ -141,7 +141,7 @@ export const FlashCard = () => {
     return (
       <Menu>
         <MenuButton as={Button} rightIcon={<ChevronDownIcon /> } colorScheme="black">
-          <p className="font-bold">Select Grade</p>
+          <p className="font-bold text-stone-200">Select Grade</p>
         </MenuButton>
         <MenuList>
           <MenuItem onClick={()=>{handleGradeSelect("grade-1")}}>Grade 1</MenuItem>
@@ -168,12 +168,12 @@ export const FlashCard = () => {
     <div className="flex content-center justify-center">
 
       {/*glow*/}
-      <div className="fixed w-7/12 z-0 shadow-2xl opacity-5 shadow-violet-900 h-96 animate-pulse mb-4 rounded-2xl "></div>
+      <div className="fixed w-7/12 z-0 shadow-2xl opacity-5 shadow-emerald-900 h-96 animate-pulse mb-4 rounded-2xl "></div>
 
       <div className="rounded-sm border-2 h-9/12 z-40 border-stone-800 border-opacity-50 bg-stone-900 w-7/12  ">
 
         <div className="px-4 flex justify-between pt-4">
-          <div className="font-bold">Kyōiku Kanji {gradeSelected}</div>
+          <div className="font-bold text-stone-200">Kyōiku Kanji {gradeSelected}</div>
           <SelectMenu/>
         </div>
 
