@@ -206,9 +206,7 @@ export const FlashCard = () => {
           <div className="bg-stone-900 border-stone-700 mr-20 cursor-pointer" onClick={toggleInfo}>{showInfo ? <BsEye/> : <BsEyeSlash/>}</div>
           <div className="flex pr-20">        
 
-            <CustomButton text={"Previous"} task={handlePrevious} />
             <CustomButton text={"Random"} style={'mx-2'} task={getRandomKanji}/>
-            <CustomButton text={"Next"}   task={handleNext}/>
           </div>
           <div>
     
