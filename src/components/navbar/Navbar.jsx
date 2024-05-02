@@ -7,7 +7,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="font-bold bg-stone-900 flex justify-center p-2 text-white text-lg mb-16">
+      <div className="font-bold bg-stone-950 flex justify-center p-2 text-white text-lg mb-16 p-5">
        Kanji
       </div>
     </>
